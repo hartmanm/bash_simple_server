@@ -1,0 +1,7 @@
+#!/bin/bash
+
+[[ -e CMD_LOG ]] || touch CMD_LOG
+echo ""
+echo "this is a blast from bash" >> CMD_LOG
+echo ""
+echo ""

@@ -1,0 +1,70 @@
+#!/bin/bash
+echo ""
+echo ""
+echo "this is bash simple connector"
+echo ""
+echo "tx: $1"
+echo ""
+echo "pwd: $2"
+echo ""
+PWD=$2
+cd $PWD
+#PIPE=$(cat pipe)
+#echo $PIPE
+#echo $3
+#BASELOG=$(echo $((1 + RANDOM % 1000)))
+#cat "$PWD"/screenlog.0 | tee "$PWD"/screenlog.0
+#BASELOG="$PWD"/screenlog.0
+#HOST=$(cat $3 | grep Host:)
+#HOST=$(cat "$PWD"/screenlog.0 | grep Host:)
+#HOST=$(cat "$PWD"/screenlog.0 | grep Host:)
+
+#HOST=""
+#FINAL_HOST=""
+#HOST=$(cat "$PWD"/screenlog.0)
+FINAL_HOST=$(grep -v 'localhost' <<< $HOST && echo "localhost" || echo "not localhost")
+#awk '$0~/test/{print "A substring called test found"}' <<< $var
+#HOST=$(echo $HOST | cut -c 7-)
+#echo $HOST
+#FINAL_HOST=$(echo $HOST | rev | cut -c 8- | rev)
+#FINAL_HOST=$(echo $HOST | grep localhost)
+#echo "client: $FINAL_HOST"
+#echo ""
+#if [[ $FINAL_HOST == "localhost" ]]
+if [[ 1 ]]
+then
+LOG=$(cat "$PWD"/screenlog.0 | grep {)
+while [[ -z $LOG ]]
+do
+LOG=$(cat "$PWD"/screenlog.0 | grep {)
+done
+#SIZE=$(wc -c <"$PWD"/screenlog.0)
+#while [[ "$SIZE" -gt 0 ]]
+#do
+#echo $SIZE
+#SIZE="$(wc -c <"$PWD"/screenlog.0)"
+#> "$PWD"/screenlog.0
+#done
+
+echo $LOG > "$PWD"/response.json
+sed -i.backup 's+!+ +g' "$PWD"/response.json
+
+LOG=$(cat "$PWD"/response.json)
+CMD=$(echo $LOG | cut -c 11-)
+FINAL_CMD=$(echo $CMD | tr -d '"}\r')
+#while [[ -z $FINAL_CMD ]]
+#do
+#FINAL_CMD=$(echo $CMD | tr -d '"}\r')
+#done
+#VALID_CMDS=[]
+#if $FINAL_CMD in VALID_CMDS then exe
+$FINAL_CMD &
+#echo "command executed: $FINAL_CMD &"
+#else
+#echo "invalid command: $FINAL_CMD"
+#else ## if [[ $FINAL_HOST == "localhost" ]]
+#echo "invalid client: $FINAL_HOST"
+fi ## if [[ $FINAL_HOST == "localhost" ]]
+#> "$PWD"/screenlog.0
+#> var
+touch cmd_complete
