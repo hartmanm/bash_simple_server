@@ -15,4 +15,4 @@ MSG='{"value":"bash blast"}'
 ## dynamic
 CMD="$1"
 MSG='{"value":"'$CMD'"}'
-/usr/bin/curl -m 5 -s -X POST --output /dev/null localhost:5555 -d "${MSG}"
+/usr/bin/curl -m 5 -s -X POST --output /dev/null localhost:3001 -d "${MSG}"

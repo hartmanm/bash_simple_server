@@ -19,7 +19,7 @@ DIR=/tmp
 #[[ -d "$DIR" ]] || diskutil erasevolume HFS+ 'ramdisk' `hdiutil attach -nomount ram://8388608`
 DIR="${DIR}/bss"
 [[ -d "$DIR" ]] || mkdir -p "$DIR"
-[[ ! -e "$PWD"/screenlog.0 ]] && touch "$PWD"/screenlog.0 
+> "$PWD"/screenlog.0 
 SIZE=$(wc -c <"$PWD"/screenlog.0)
 [[ -z $SIZE ]] || > "$DIR"/screenlog.0
 BSS="$PWD"/server.sh
@@ -31,15 +31,11 @@ cp "$BLAST" "$DIR"
 cd "$DIR"
 if [[ -z $1 ]]
 then
-BSS="bash server.sh 5555 $DIR"
+BSS="bash server.sh 3001 $DIR"
 else
 BSS="bash server.sh $PORT $DIR"
 fi
 echo $BSS
-#mkfifo var
-#script var
-#echo "test"
-
 screen -dmS bss -L $BSS
 screen -r bss
 cd "$PWD"
