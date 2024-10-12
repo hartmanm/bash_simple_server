@@ -5,14 +5,22 @@
 # https://github.com/hartmanm
 
 PORT=$1
-[[ `which screen` == "" ]] && sudo apt update; sudo apt install -y screen
+[[ `which screen` == "" ]] && {
+sudo apt update
+sudo apt install -y screen
+}
+[[ `which nc` == "" ]] && {
+sudo apt update
+sudo apt install -y nc
+}
 PWD=$(pwd)
 DIR=/tmp
 #DIR=/Volumes/ramdisk
 #[[ -d "$DIR" ]] || diskutil erasevolume HFS+ 'ramdisk' `hdiutil attach -nomount ram://8388608`
 DIR="${DIR}/bss"
-[[ -d "$DIR" ]] || mkdir "$DIR"
+[[ -d "$DIR" ]] || mkdir -p "$DIR"
 [[ ! -e "$PWD"/screenlog.0 ]] && {
+touch "$PWD"/screenlog.0 
 SIZE=$(wc -c <"$PWD"/screenlog.0)
 [[ -z $SIZE ]] || > "$DIR"/screenlog.0
 }
