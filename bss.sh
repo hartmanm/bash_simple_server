@@ -4,6 +4,8 @@
 # mnh_license@proton.me
 # https://github.com/hartmanm
 
+# start a bash http server, then send it commands to relay to a connector to execute 
+
 PORT=$1
 [[ `which screen` == "" ]] && {
 sudo apt update
