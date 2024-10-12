@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Copyright (c) 2019 Michael Neill Hartman. All rights reserved.
+# mnh_license@proton.me
+# https://github.com/hartmanm
+
 MSG='{"value":"bash!scp!3!dev"}'
 ## note ! in place of space for sending cmds
 ## import test

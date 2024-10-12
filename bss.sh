@@ -1,9 +1,16 @@
 #!/bin/bash
+
+# Copyright (c) 2019 Michael Neill Hartman. All rights reserved.
+# mnh_license@proton.me
+# https://github.com/hartmanm
+
 PORT=$1
+[[ `which screen` == "" ]] && sudo apt update; sudo apt install screen
 PWD=$(pwd)
-DIR=/Volumes/ramdisk
-[[ -d "$DIR" ]] || diskutil erasevolume HFS+ 'ramdisk' `hdiutil attach -nomount ram://8388608`
-DIR=/Volumes/ramdisk/bss
+DIR=/tmp
+#DIR=/Volumes/ramdisk
+#[[ -d "$DIR" ]] || diskutil erasevolume HFS+ 'ramdisk' `hdiutil attach -nomount ram://8388608`
+DIR="${DIR}/bss"
 [[ -d "$DIR" ]] || mkdir "$DIR"
 SIZE=$(wc -c <"$PWD"/screenlog.0)
 [[ -z $SIZE ]] || > "$DIR"/screenlog.0
